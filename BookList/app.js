@@ -5,7 +5,6 @@ function Book(title, author, isbn) {
     this.isbn = isbn;
 }
 
-
 // UI Constructor 
 function UI(){}
 
@@ -21,7 +20,6 @@ UI.prototype.addBookToList = function(book) {
     <td><a href="#" class="delete">X<a></td>`
 
     list.appendChild(row);
-
 
 }
 
