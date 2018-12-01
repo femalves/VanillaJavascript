@@ -1,49 +1,22 @@
-// Fetch API 
+const http = new EasyHTTP;
 
-document.getElementById('button1').addEventListener('click', getText);
+// Get Users
+http.get('https://jsonplaceholder.typicode.com/users').then(data => console.log(data)).catch(err => console.log(err));
 
-document.getElementById('button2').addEventListener('click', getJson);
-
-document.getElementById('button3').addEventListener('click', getExternal);
-
-
-// Get local text file data
-function getText() {
-    fetch('test.txt')
-    .then(response => response.text())
-    .then(data => {
-        
-        document.getElementById('output').innerHTML = data;
-    })
-    .catch(err => console.log(err));
+// User Data
+const data = {
+    name: 'John Doe', 
+    username: 'johndoe', 
+    email: 'jdoe@gmail.com'
 }
 
-// Get json data 
-function getJson() {
-    fetch('post.json')
-    .then(response => response.json()) 
-    .then(data => {
-        let output = '';
-        data.forEach(function(post) {
-            output += `<li>${post.title}</li>`;
-        });
-        document.getElementById('output').innerHTML = output;
-    })
-    .catch(err => console.log(err));
-    
-}
 
-// Get from external API
-function getExternal() {
-    fetch('https://api.github.com/users')
-    .then(response => response.json())
-    .then(data => {
-        let output = '';
-        data.forEach(function(user) {
-            output += `<li>${user.login}</li>`;
-        });
-        document.getElementById('output').innerHTML = output;
-    })
-    .catch(err => console.log(err));
-   
-}
+// Create User
+http.post('https://jsonplaceholder.typicode.com/users', data).then(data => console.log(data)).catch(err => console.log(err));
+
+// Update User
+http.put('https://jsonplaceholder.typicode.com/users/2', data).then(data => console.log(data)).catch(err => console.log(err));
+
+
+// Delete User
+http.delete('https://jsonplaceholder.typicode.com/users/2', data).then(data => console.log(data)).catch(err => console.log(err));
